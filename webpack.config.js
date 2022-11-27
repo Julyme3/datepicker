@@ -34,14 +34,14 @@ module.exports = {
             template: './src/index.html'
         }),
         new CleanWebpackPlugin(),
-        new CopyPlugin({
-            patterns: [
-                {
-                    from: path.resolve(__dirname, 'src/assets'),
-                    to: path.resolve(__dirname, 'dist/assets')
-                }
-            ]
-        }),
+        // new CopyPlugin({
+        //     patterns: [
+        //         {
+        //             from: path.resolve(__dirname, 'src/assets'),
+        //             to: path.resolve(__dirname, 'dist/assets')
+        //         }
+        //     ]
+        // }),
         new MiniCssExtractPlugin({
             filename: isDev ? '[name].css' : '[name].[hash].css'
         }),
@@ -56,7 +56,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/i,
+                test: /\.less$/i,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
             },
             {

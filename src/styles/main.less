@@ -1,0 +1,115 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+.datepicker-container {
+  margin: 2rem auto;
+  padding: 4rem 2rem;
+  box-sizing: border-box;
+  width: 50%;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.datepicker-group {
+  margin-bottom: 1.5rem;
+}
+
+.datepicker-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.datepicker-input {
+  width: 100%;
+  height: 2.5rem;
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  padding: 2px;
+}
+
+.datepicker-btn {
+  border: none;
+  border-radius: 3px;
+  background-color: #38ACEC;
+  padding: 1rem;
+  font-size: 1.6rem;
+  color: #FEFCFF;
+  font-weight: bold;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.calendar {
+  width: 60%;
+  box-shadow: 0 2px 8px rgba(0,0,0, 0.26);
+  border-radius: 3px;
+}
+
+.calendar-header,
+.calendar-body {
+  padding: 6px;
+}
+
+.calendar-header {
+  background-color: #82CAFA;
+}
+
+.month-change {
+  padding: 2px 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.calendar-prev-btn {
+  margin-right: auto;
+}
+
+.calendar-next-btn {
+  margin-left: auto;
+}
+
+.calendar-select {
+  background-color: transparent;
+  padding: 2px 5px;
+  border: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+.calendar-header-dates {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.calendar-body {
+  background-color: #FEFCFF;
+}
+
+.calendar-days-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day-unit {
+  width: 2.5rem;
+  line-height: 2.5rem;
+  text-align: center;
+  cursor: pointer;
+}
