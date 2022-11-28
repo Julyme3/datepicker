@@ -1,70 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Datepicker</title>
-</head>
-<body>
-<div class="datepicker-container">
-  <form id="datepicker">
-    <div class="datepicker-group">
-      <label for="datepicker-date-input" class="datepicker-label">
-        Select the date
-      </label>
-        <input type="text" id="datepicker-date-input" class="datepicker-input" autocomplete="off" />
-    </div>
-      <div class="calendar">
-          <div class="calendar-header">
-              <div class="calendar-header-dates">
-                  <button type="button" class="calendar-prev-btn month-change">&#8592;</button>
-                  <select class="calendar-select calendar-year">
-                      <option value="2019" class="calendar-option">2019</option>
-                      <option value="2020" class="calendar-option">2020</option>
-                      <option value="2021" class="calendar-option">2021</option>
-                      <option value="2022" class="calendar-option">2022</option>
-                  </select>
-                  <select class="calendar-select calendar-month">
-                      <option value="January" class="calendar-option">January</option>
-                      <option value="February" class="calendar-option">February</option>
-                      <option value="March" class="calendar-option">March</option>
-                  </select>
-                  <button type="button" class="calendar-next-btn month-change">&#8594;</button>
-              </div>
-              <div class="calendar-days-row">
-                  <div class="day-unit">M</div>
-                  <div class="day-unit">T</div>
-                  <div class="day-unit">W</div>
-                  <div class="day-unit">T</div>
-                  <div class="day-unit">F</div>
-                  <div class="day-unit">S</div>
-                  <div class="day-unit">S</div>
-              </div>
+  </head>
+  <body>
+    <div class="dt-container">
+      <form id="datepicker" class="datepicker-form">
+        <div class="datepicker-group">
+          <label for="datepicker-date-input" class="datepicker-label">
+            Select the date
+          </label>
+          <input
+            type="text"
+            id="datepicker-date-input"
+            class="datepicker-input"
+            autocomplete="off"
+          />
+        </div>
+        <div class="datepicker-calendar">
+          <div class="datepicker-calendar-header">
+            <div class="datepicker-calendar-header-dates">
+              <button
+                type="button"
+                class="datepicker-prev-btn datepicker-header-btn"
+              >
+                &#8592;
+              </button>
+              <select class="datepicker-select datepicker-select-year">
+                <option value="2019" class="calendar-option">2019</option>
+                <option value="2020" class="calendar-option">2020</option>
+                <option value="2021" class="calendar-option">2021</option>
+                <option value="2022" class="calendar-option">2022</option>
+              </select>
+              <select class="datepicker-select datepicker-select-month">
+                <option value="January" class="calendar-option">January</option>
+                <option value="February" class="calendar-option">
+                  February
+                </option>
+                <option value="March" class="calendar-option">March</option>
+              </select>
+              <button
+                type="button"
+                class="datepicker-next-btn datepicker-header-btn"
+              >
+                &#8594;
+              </button>
+            </div>
+            <div class="datepicker-calendar-days-row">
+              <div class="datepicker-day-unit">M</div>
+              <div class="datepicker-day-unit">T</div>
+              <div class="datepicker-day-unit">W</div>
+              <div class="datepicker-day-unit">T</div>
+              <div class="datepicker-day-unit">F</div>
+              <div class="datepicker-day-unit">S</div>
+              <div class="datepicker-day-unit">S</div>
+            </div>
           </div>
 
-          <div class="calendar-body">
-              <div class="calendar-days-row">
-                  <div class="day-unit">1</div>
-                  <div class="day-unit">2</div>
-                  <div class="day-unit">3</div>
-                  <div class="day-unit">4</div>
-                  <div class="day-unit">5</div>
-                  <div class="day-unit">6</div>
-                  <div class="day-unit">7</div>
-              </div>
-              <div class="calendar-days-row">
-                  <div class="day-unit">8</div>
-                  <div class="day-unit">9</div>
-                  <div class="day-unit">10</div>
-                  <div class="day-unit">11</div>
-                  <div class="day-unit">12</div>
-                  <div class="day-unit">13</div>
-                  <div class="day-unit">14</div>
-              </div>
+          <div class="datepicker-calendar-body">
+            <div class="datepicker-calendar-days-row">
+              <div class="datepicker-day-unit">1</div>
+              <div class="datepicker-day-unit">2</div>
+              <div class="datepicker-day-unit">3</div>
+              <div class="datepicker-day-unit">4</div>
+              <div class="datepicker-day-unit">5</div>
+              <div class="datepicker-day-unit">6</div>
+              <div class="datepicker-day-unit">7</div>
+            </div>
+
+            <div class="datepicker-calendar-days-row">
+              <div class="datepicker-day-unit">8</div>
+              <div class="datepicker-day-unit">9</div>
+              <div class="datepicker-day-unit">10</div>
+              <div class="datepicker-day-unit">11</div>
+              <div class="datepicker-day-unit">12</div>
+              <div class="datepicker-day-unit">13</div>
+              <div class="datepicker-day-unit">14</div>
+            </div>
           </div>
-      </div>
-    <button class="datepicker-btn">Submit</button>
-  </form>
-</div>
-</body>
+        </div>
+        <button class="datepicker-btn">Submit</button>
+      </form>
+    </div>
+  </body>
 </html>
