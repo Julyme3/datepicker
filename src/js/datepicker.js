@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { createOptionEl } from './utils';
 
 class Datepicker {
   constructor({ id, startDate, endDate, defaultYearAndMonth }) {
@@ -89,9 +90,7 @@ class Datepicker {
     const fragmentYears = document.createDocumentFragment();
 
     for (let i = startYear; i < endYear; i++) {
-      const optionEl = document.createElement('option');
-      optionEl.value = i;
-      optionEl.text = i;
+      const optionEl = createOptionEl(i, i);
       fragmentYears.appendChild(optionEl);
     }
 
@@ -112,9 +111,10 @@ class Datepicker {
 
     while (iterationDateYYYMM <= endDateYYYYMM) {
       if (Number(iterationDate.format('YYYY')) === currentYear) {
-        const optionEl = document.createElement('option');
-        optionEl.value = iterationDate.format('MM');
-        optionEl.text = iterationDate.format('MMMM');
+        const optionEl = createOptionEl(
+          iterationDate.format('MM'),
+          iterationDate.format('MMMM')
+        );
         fragmentMonths.appendChild(optionEl);
       }
 
