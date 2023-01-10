@@ -5,6 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -50,6 +51,9 @@ module.exports = {
     new ESLintPlugin({
       fix: false,
       failOnWarning: false,
+    }),
+    new MomentLocalesPlugin({
+      localesToKeep: ['ru'],
     }),
   ],
   optimization: {
