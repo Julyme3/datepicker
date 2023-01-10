@@ -46,25 +46,6 @@ class Datepicker {
           </div>
 
           <div class="datepicker-calendar-body">
-            <div class="datepicker-calendar-days-row">
-              <div class="datepicker-day-unit">1</div>
-              <div class="datepicker-day-unit">2</div>
-              <div class="datepicker-day-unit">3</div>
-              <div class="datepicker-day-unit">4</div>
-              <div class="datepicker-day-unit">5</div>
-              <div class="datepicker-day-unit">6</div>
-              <div class="datepicker-day-unit">7</div>
-            </div>
-
-            <div class="datepicker-calendar-days-row">
-              <div class="datepicker-day-unit">8</div>
-              <div class="datepicker-day-unit">9</div>
-              <div class="datepicker-day-unit">10</div>
-              <div class="datepicker-day-unit">11</div>
-              <div class="datepicker-day-unit">12</div>
-              <div class="datepicker-day-unit">13</div>
-              <div class="datepicker-day-unit">14</div>
-            </div>
           </div>
         </div>
     `;
@@ -73,6 +54,7 @@ class Datepicker {
       this.inputEl.parentElement.insertAdjacentHTML('beforeend', html);
       this.datepickerEl = document.querySelector(`#datepicker-${this.uid}`);
       this.setHeaderYearAndMonthRange();
+      this.rendersDays();
     }
   }
 
@@ -125,6 +107,55 @@ class Datepicker {
     if (selectMonthEl) {
       selectMonthEl.appendChild(fragmentMonths);
     }
+  }
+
+  rendersDays() {
+    const monthArray = this.populateMonthOfDays();
+    const datepickerBodyEl = document.querySelector(
+      `#datepicker-${this.uid} .datepicker-calendar-body`
+    );
+    const rowTmpl = '<div class="datepicker-calendar-days-row"></div>';
+    let rowEls = null;
+
+    monthArray.forEach((day, index) => {
+      if (index % 7 === 0) {
+        datepickerBodyEl.insertAdjacentHTML('beforeend', rowTmpl);
+        rowEls = document.querySelectorAll(
+          `#datepicker-${this.uid} .datepicker-calendar-body .datepicker-calendar-days-row`
+        );
+      }
+
+      const rowsCount = rowEls?.length ?? 0;
+      const dayTmpl = `<div class="datepicker-day-unit">${day}</div>`;
+
+      if (rowsCount) {
+        rowEls[rowsCount - 1].insertAdjacentHTML('beforeend', dayTmpl);
+      }
+    });
+  }
+
+  populateMonthOfDays() {
+    const firstDayOfWeek = this.getFirstDayOfWeek();
+    const daysOfMonth = this.getDaysOfMonth();
+    const monthArray = [];
+
+    for (let i = 1; i < firstDayOfWeek; i++) {
+      monthArray.push('');
+    }
+
+    for (let i = 1; i <= daysOfMonth; i++) {
+      monthArray.push(i);
+    }
+
+    return monthArray;
+  }
+
+  getFirstDayOfWeek() {
+    return moment(new Date(this.currentYearAndMonth)).isoWeekday();
+  }
+
+  getDaysOfMonth() {
+    return moment(new Date(this.currentYearAndMonth)).daysInMonth();
   }
 }
 
