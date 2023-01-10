@@ -1,8 +1,12 @@
+import moment from 'moment';
+
 class Datepicker {
-  constructor({ id, startDate, endDate }) {
+  constructor({ id, startDate, endDate, defaultYearAndMonth }) {
     this.uid = id;
     this.startDate = startDate;
     this.endDate = endDate;
+    this.defaultYearAndMonth = defaultYearAndMonth;
+    this.currentYearAndMonth = defaultYearAndMonth;
     this.inputEl = document.querySelector(`#${this.uid}`);
     this.datepickerEl = null;
   }
@@ -18,18 +22,9 @@ class Datepicker {
               >
                 &#8592;
               </button>
-              <select class="datepicker-select datepicker-select-year">
-                <option value="2019" class="calendar-option">2019</option>
-                <option value="2020" class="calendar-option">2020</option>
-                <option value="2021" class="calendar-option">2021</option>
-                <option value="2022" class="calendar-option">2022</option>
+              <select class="datepicker-select datepicker-select-year" id="datepicker-select-year-${this.uid}">
               </select>
-              <select class="datepicker-select datepicker-select-month">
-                <option value="January" class="calendar-option">January</option>
-                <option value="February" class="calendar-option">
-                  February
-                </option>
-                <option value="March" class="calendar-option">March</option>
+              <select class="datepicker-select datepicker-select-month" id="datepicker-select-month-${this.uid}">
               </select>
               <button
                 type="button"
@@ -76,6 +71,59 @@ class Datepicker {
     if (this.inputEl) {
       this.inputEl.parentElement.insertAdjacentHTML('beforeend', html);
       this.datepickerEl = document.querySelector(`#datepicker-${this.uid}`);
+      this.setHeaderYearAndMonthRange();
+    }
+  }
+
+  setHeaderYearAndMonthRange() {
+    this.setHeaderYear();
+    this.setHeaderMonth();
+  }
+
+  setHeaderYear() {
+    const startYear = Number(this.startDate.substring(0, 4));
+    const endYear = Number(this.endDate.substring(0, 4));
+    const selectYearEl = document.querySelector(
+      `#datepicker-select-year-${this.uid}`
+    );
+    const fragmentYears = document.createDocumentFragment();
+
+    for (let i = startYear; i < endYear; i++) {
+      const optionEl = document.createElement('option');
+      optionEl.value = i;
+      optionEl.text = i;
+      fragmentYears.appendChild(optionEl);
+    }
+
+    if (selectYearEl) {
+      selectYearEl.appendChild(fragmentYears);
+    }
+  }
+
+  setHeaderMonth() {
+    const currentYear = Number(this.currentYearAndMonth.substring(0, 4));
+    let iterationDate = moment(this.startDate);
+    let iterationDateYYYMM = moment(iterationDate).format('YYYY-MM');
+    const endDateYYYYMM = moment(this.endDate).format('YYYY-MM');
+    const selectMonthEl = document.querySelector(
+      `#datepicker-select-month-${this.uid}`
+    );
+    const fragmentMonths = document.createDocumentFragment();
+
+    while (iterationDateYYYMM <= endDateYYYYMM) {
+      if (Number(iterationDate.format('YYYY')) === currentYear) {
+        const optionEl = document.createElement('option');
+        optionEl.value = iterationDate.format('MM');
+        optionEl.text = iterationDate.format('MMMM');
+        fragmentMonths.appendChild(optionEl);
+      }
+
+      iterationDate = iterationDate.add(1, 'months');
+      iterationDateYYYMM = moment(iterationDate).format('YYYY-MM');
+    }
+
+    if (selectMonthEl) {
+      selectMonthEl.appendChild(fragmentMonths);
     }
   }
 }

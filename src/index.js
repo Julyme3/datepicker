@@ -23,8 +23,9 @@ datepickerInputEls.forEach((inputEl) => {
     if (!datepickerEl) {
       const datepicker = new Datepicker({
         id,
-        startDate: '2018-11-30',
-        endDate: '2022-11-29',
+        startDate: '2011-11-30',
+        endDate: '2025-11-29',
+        defaultYearAndMonth: '2011-12',
       });
       datepicker.addHTML();
 
