@@ -12,6 +12,8 @@ class Datepicker {
     this.datepickerEl = null;
     this.selectYearEl = null;
     this.selectMonthEl = null;
+    this.nextBtn = null;
+    this.prevBtn = null;
   }
 
   addHTML() {
@@ -55,19 +57,21 @@ class Datepicker {
     if (this.inputEl) {
       this.inputEl.parentElement.insertAdjacentHTML('beforeend', html);
       this.datepickerEl = document.querySelector(`#datepicker-${this.uid}`);
+      this.nextBtn = this.datepickerEl.querySelector('.datepicker-next-btn');
+      this.prevBtn = this.datepickerEl.querySelector('.datepicker-prev-btn');
       this.init();
     }
   }
 
   init() {
     this.setHeaderYearAndMonthRange();
-    this.rendersDays();
     this.setupHandlers();
   }
 
   setHeaderYearAndMonthRange() {
     this.setHeaderYear();
     this.setHeaderMonth();
+    this.rendersDays();
   }
 
   setHeaderYear() {
@@ -172,6 +176,14 @@ class Datepicker {
     return monthArray;
   }
 
+  changeMonth(value) {
+    this.currentYearAndMonth = moment(new Date(this.currentYearAndMonth))
+      .add(value, 'months')
+      .format('YYYY-MM');
+
+    this.setHeaderYearAndMonthRange();
+  }
+
   setupHandlers() {
     this.selectYearEl.addEventListener('change', (e) => {
       this.currentYearAndMonth = `${
@@ -187,6 +199,14 @@ class Datepicker {
       }`;
 
       this.rendersDays();
+    });
+
+    this.nextBtn.addEventListener('click', () => {
+      this.changeMonth(1, this.nextBtn);
+    });
+
+    this.prevBtn.addEventListener('click', () => {
+      this.changeMonth(-1, this.prevBtn);
     });
   }
 
