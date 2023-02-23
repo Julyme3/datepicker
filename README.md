@@ -1,5 +1,5 @@
-# Live chat
-Simplest datepicker
+# Simplest datepicker
+
 ## Pre-request
 Should be installed:
 -  [Node js](https://nodejs.org/en/)
